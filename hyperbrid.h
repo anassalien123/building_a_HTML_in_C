@@ -18,17 +18,32 @@ struct s_string
 };
 typedef struct s_string String;
 
+struct s_tuple
+{
+    String *s;
+    int8 c;
+};
+typedef struct s_tuple Tuple;
+
 
 typedef unsigned char int8;
 typedef unsigned short int  int16;
 typedef unsigned int int32;
 typedef unsigned long long int int64;
 
-#define $8 (int8 *)
-#define $6 (int16)
-#define $2 (int32)
-#define $4 (int64)
+#define $1 (int8 *)
+#define $2 (int16)
+#define $4 (int32)
+#define $8 (int64)
 #define $c (char *)
 #define $i (int)
 
+#define sdestroy(s)    free(s)
+
+// constructor function
+String *mkstring(int8*);
+
+Tuple get(String*);
+int16 stringlen(int8*);
+void stringcopy(int8*, int8*, int16);
 int main(int, char**);

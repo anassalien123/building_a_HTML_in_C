@@ -24,7 +24,7 @@ int16 stringlen(int8 *str)
     int8 *p;
 
     assert(str);
-    for(p = str; n=0; p++, n++);
+    for(p = str, n=0;*p; p++, n++);
 
     return n;
 }
@@ -41,6 +41,25 @@ void stringcopy(int8 *dst, int8 *src, int16 size)
     return;
 }
 
+String *scopy(String *s)
+{
+    String *p;
+    int16 size;
+
+    assert(s && s->length);
+    size = sizeof(struct s_string) + s->length;
+    p = (String *)malloc($i size);
+    assert(p);
+
+    bzero($1 p, size);
+    p->length = s->length;
+    stringcopy(p->data, s->cur, s->length);
+    p->cur = p->data;
+    sdestroy(s);
+    
+    return p;
+}
+
 Tuple get(String *s)
 {
     String *new;
@@ -51,7 +70,7 @@ Tuple get(String *s)
         goto fail;
     
     c = *s->cur;
-    new scopy(s);
+    new = scopy(s);
     if (!new)
         goto fail;
     
@@ -81,10 +100,10 @@ String *mkstring(int8 *str)
     n = stringlen(str);
     assert(n);
     size = sizeof(struct s_string) + n;
-    p = (int8 *)malloc($i size);
+    p = (String *)malloc($i size);
     assert(p);
 
-    zero($1 p, size);
+    bzero($1 p, size);
     p->length = n;
     stringcopy(p->data, str, n);
     p->cur = p->data;
@@ -102,6 +121,11 @@ int main(int argc, char *argv[])
     t = get(s);
     if (!t.c)
     {
-        printf("err");
+        printf("err\n");
+        return -1;
     }
+    c = t.c;
+
+    printf("c = '%c'\nnew = '%s'\n",c,t.s->cur);
+    return 0;
 }

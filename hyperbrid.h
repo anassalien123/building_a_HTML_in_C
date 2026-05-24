@@ -6,8 +6,13 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <errno.h>
-#include "tokens.h"
+// #include "tokens.h"
 // #include <birchutils.h>
+
+typedef unsigned char int8;
+typedef unsigned short int  int16;
+typedef unsigned int int32;
+typedef unsigned long long int int64;
 
 // immutable varible
 struct s_string
@@ -25,12 +30,6 @@ struct s_tuple
 };
 typedef struct s_tuple Tuple;
 
-
-typedef unsigned char int8;
-typedef unsigned short int  int16;
-typedef unsigned int int32;
-typedef unsigned long long int int64;
-
 #define $1 (int8 *)
 #define $2 (int16)
 #define $4 (int32)
@@ -43,6 +42,7 @@ typedef unsigned long long int int64;
 // constructor function
 String *mkstring(int8*);
 
+String *scopy(String*);
 Tuple get(String*);
 int16 stringlen(int8*);
 void stringcopy(int8*, int8*, int16);

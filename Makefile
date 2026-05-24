@@ -1,15 +1,19 @@
-flags=-02 -Wall -std=c2x
-ldflags=-lbu
+CC = cc
+CFLAGS = -O2 -Wall -std=c2x
 
-all: clean hyperbrid
+SRC = hyperbird.c
+OBJ = hyperbird.o
+TARGET = hyperbrid
 
-hyperbrid: hyperbrid.o
-	cc $(flags) $^ -o $@ $(ldflags)
+all: clean $(TARGET)
 
-hyperbrid.o: hyperbrid.c hyperbrid.h
-	cc $(flags) -c $<
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $@
+
+$(OBJ): $(SRC) hyperbrid.h
+	$(CC) $(CFLAGS) -c $(SRC)
 
 clean:
-	rm -f *.o hyperbrid
+	rm -f *.o $(TARGET)
 
 .PHONY: all clean

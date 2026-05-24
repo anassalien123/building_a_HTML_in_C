@@ -1,3 +1,8 @@
+typedef unsigned char int8;
+typedef unsigned short int  int16;
+typedef unsigned int int32;
+typedef unsigned long long int int64;
+
 struct s_string
 {
     int16 length;
@@ -5,11 +10,6 @@ struct s_string
     int8 data[];
 };
 typedef struct s_string String;
-
-typedef unsigned char int8;
-typedef unsigned short int  int16;
-typedef unsigned int int32;
-typedef unsigned long long int int64;
 
 enum e_tag
 {

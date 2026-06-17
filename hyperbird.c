@@ -35,7 +35,7 @@ void stringcopy(int8 *dst, int8 *src, int16 size)
     int8 *d, *s;
 
     assert(src && dst && size);
-    for(d=dst, s=src, n=size; n; d++, src++, n--)
+    for(d=dst, s=src, n=size; n; d++, s++, n--)
         *d = *s;
     
     return;
@@ -55,7 +55,7 @@ String *scopy(String *s)
     p->length = s->length;
     stringcopy(p->data, s->cur, s->length);
     p->cur = p->data;
-    sdestroy(s);
+    // sdestroy(s);
     
     return p;
 }
